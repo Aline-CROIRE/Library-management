@@ -41,7 +41,7 @@ if(exist){
 for(let i=0; i<books.length; i++){
     if(books[i].title===booktitle&&books[i].availability===true){
  console.log(`${borrowername} borrowed ${booktitle} book.`);
- books[i].Holder=borrowername;
+ books[i].holder=borrowername;
  books[i].availability=false;
     }
 }
@@ -51,6 +51,27 @@ else{
 }
 }
 //borrowing books
+borrow('The adge','Karine')
 borrow('The river between','Aline');
 borrow('My angel','Karine');
 console.log(books);//displaying books to see change after borrowing
+//function to return book
+const returnBook=(booktitle,holdername)=>{
+    let borrowed=books.some((books)=>books.title===booktitle&&books.holder===holdername);
+    if(borrowed){
+        for(let i=0; i<books.length; i++){
+            if(books[i].title===booktitle&&books[i].holder===holdername){
+                console.log('Thanks for Returning book')
+         books[i].holder='';
+         books[i].availability=true;
+            }
+        }
+    }
+else{
+    console.log('you returned Wrong book');
+}
+}
+returnBook('The river between','Aline');
+returnBook('The adge','Karine');
+returnBook('The adge','Aline');
+console.log(books)// Displaying books to see change after borrowing
